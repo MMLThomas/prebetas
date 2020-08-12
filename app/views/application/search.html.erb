@@ -1,0 +1,19 @@
+<center>
+    <h1> Find A Project </h1>
+
+    <br><br>
+    <div id="search-bar">
+        <%=form_tag(projects_path, method: :get) do %>
+            <%= label_tag :search %>
+            <%= text_field_tag :search%>
+
+            <%= submit_tag "Submit"%>
+        <% end %>
+    </div> 
+
+
+
+
+
+
+</center>

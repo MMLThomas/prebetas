@@ -1,0 +1,21 @@
+            <%=form_for @project, class: 'project-form' do |f|%>
+                <li><%=f.label :image%>
+                <%=f.file_field :image%></li><br>
+                <li><%=f.label :title%>
+                <%=f.text_field :title%></li><br>
+                <li><%=f.label :short_description%>
+                <%=f.text_area :short_description%></li><br>
+                <li><%=f.label :story%>
+                <%=f.text_area :story%></li><br>
+                <li><%=f.label :incentive%>
+                <%=f.text_field :incentive%></li><br>
+                <li><%=f.label :goal%>
+                <%=f.text_field :goal%></li><br>
+                <li><%=f.label :start_date%>
+                <%=f.date_select :start_date%></li><br>
+                <li><%=f.label :duration%>
+                <%=f.text_field :duration%></li><br>
+                <%=hidden_field_tag :user, User.find(session[:user_id])%>
+
+                <%=f.submit%>
+            <% end %>

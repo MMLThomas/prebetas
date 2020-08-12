@@ -1,0 +1,16 @@
+<center>
+<%if params[:search]%>
+    <h1 >These are the projects that match your search</h1>
+<% else %>
+    <h1 >Have a look through all of the projects</h1>
+<% end %>
+   
+<%@projects.each do |p|%>
+    <%=image_tag(p.image, style: 'width:300px; height:240px')%><br>
+    <%=p.title%><br>
+    <%=p.short_description%><br>
+    <div class="project-view-button">
+        <%=link_to "View Projects", project_path(p)%>
+    </div><br><br>
+<% end %>
+</center>

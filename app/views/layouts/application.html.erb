@@ -10,6 +10,41 @@
   </head>
 
   <body>
+  <header>
+    <nav class="nav-wrapper">
+
+      <div id="logo">
+        <%= image_tag ("Untitled-1.jpg"), style: 'height:80%;width:80%;'%>
+      </div>
+
+      <ul class="nav-buttons">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects">Browse</a></li>
+        <li><a href="/users/projects/new">Create</a></li>
+        <li><a href="/search">Search</a></li>
+      </ul>
+
+      <%if logged_in?(session)%>
+        <ul class="session-buttons">
+          <li id="login"><%= link_to current_user(session).username, user_path(current_user(session))%></li>
+          <li id="signup"><%=link_to "Logout", "/logout", method: :destroy %><li>
+        </ul>
+      <% else %>
+        <ul class="session-buttons">
+          <li id="login"><a href="/login">login</a></li>
+          <li id="signup"><a href="/users/new">Sign Up</a><li>
+        </ul>
+      <% end %>
+    </nav>
+  </header>
+    
     <%= yield %>
+
+    <footer class="branding">
+        <small>&copy; 2020 <strong>Prebetas</strong></small>
+      </footer>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   </body>
 </html>

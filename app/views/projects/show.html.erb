@@ -1,0 +1,91 @@
+<div class="project-page">    
+    
+    <h1><center><%=@project.title%></center></h1>
+    <div class ="project-stats-container">
+        <div class="project-image-container">
+            <div id="project-image">
+                <%=image_tag(@project.image, style:'width: 600px; height: 480px')%>
+            </div>
+        </div>
+        <div class="project-details">
+            <div id="project-status-tag">
+                <%=@project.status%>
+            <div id="project-title">
+                <%=@project.title%>
+            </div>
+            <div id="project-description">
+                <%=@project.short_description%>
+            </div>
+            <div id="project-owner-username">
+                <p>Created by: <%=@project.user.username%></p>
+            </div>
+
+            
+            <div id="backers-usernames">
+                <p>Backers (<%=@project.backers.count%>)</p>
+            </div>
+
+        </div>
+
+        <div id="end-date">
+            <p>End Date: <%=@project.end_date%> </p>
+        </div>
+
+        <%if @project.user != current_user(session)%>
+            <%if @project.backing_project?(current_user(session))%>
+                <p>You currently back this project</p>
+            <% else %>
+                <div id="back-project-button">
+                    <%=form_tag :enrollments, :action => "create" do%>
+                        <%=hidden_field_tag :project_id, @project.id%>
+                        <%=submit_tag "Back Project"%>
+                    <% end %>
+                </div>
+            <% end %>
+        <%else%>
+            <div id="edit-project-button">
+                <%= link_to "Edit Project", edit_project_path(@project)%>
+            </div>
+        <% end %>
+
+
+
+
+    </div>  
+
+    
+    <div id="project-story">
+        <h1>Our story</h1>
+        <%=@project.story%>
+    </div><br><br>
+
+    <center>
+    <div id="project-comments-container">
+        <h1>Comments</h1>
+        <div id="project-comments">
+            <% @project.show_comments.each do |comment|%>
+                <p> @<%=comment.user.username%></p>
+                <%=comment.content%><br><br>
+            <% end %>
+        </div>
+        
+    
+        <div id="project-comments-form">
+            <%=form_for @comment do |f|%>
+                <%=f.text_area :content%><br>
+                <%=hidden_field_tag :project_id, @project.id%>
+                <%=hidden_field_tag :user_id, current_user(session).id%>
+                <%=f.submit%>
+            <% end %>
+        <div>
+
+    </div>
+    </center>
+
+    
+</div>
+ 
+
+
+
+

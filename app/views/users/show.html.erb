@@ -1,0 +1,27 @@
+<center>
+<h1>Welcome <%=@user.first_name%> </h1>
+<%=link_to "Edit Account", edit_user_path(@user)%><br><br>
+
+
+
+<h3>Backed projects</h3>
+<%@user.backed_projects.each do |p|%>
+    <%=image_tag(p.image, style: 'width:200px; height: 160px')%><br>
+    <%=p.title%><br>
+    <div class="project-view-button">
+        <%=link_to "View Project", project_path(p)%>
+    </div><br>
+    
+<% end %>
+
+<h3>My Projects</h3>
+<%@user.projects.each do |p|%>
+    <%=image_tag(p.image, style: 'width:200px; height: 160px')%><br>
+    <%=p.title%><br>
+    <div class="project-view-button">
+        <%=link_to "View Project", project_path(p)%>
+    </div><br>
+<% end %>
+</center>
+
+ 

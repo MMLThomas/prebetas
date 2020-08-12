@@ -1,0 +1,15 @@
+<h1><center>This is the login page</center></h1>
+
+        <center>
+        <div class="login-form">
+            <%=form_tag :login, :action => "create" do %>
+                <%=label_tag :username%>
+                <%=text_field_tag :username%>
+                <%=label_tag :password%>
+                <%=password_field_tag :password%>
+                
+                
+                <%=submit_tag "login"%>
+            <% end %>
+        </div>
+        </center>
