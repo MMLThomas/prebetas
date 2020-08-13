@@ -30,22 +30,26 @@
         <div id="end-date">
             <p>End Date: <%=@project.end_date%> </p>
         </div>
-
-        <%if @project.user != current_user(session)%>
-            <%if @project.backing_project?(current_user(session))%>
-                <p>You currently back this project</p>
-            <% else %>
+        
+        <%if logged_in?(session)%>
+            <%if @project.user == current_user(session)%>
+                <div id="edit-project-button">
+                    <%= link_to "Edit Project", edit_project_path(@project)%>
+                </div>
+            <%else%>
+                <%if @project.backers.include?(current_user(session))%>
+                    <p> you currently back this project </p>
+                <%else%>
                 <div id="back-project-button">
                     <%=form_tag :enrollments, :action => "create" do%>
                         <%=hidden_field_tag :project_id, @project.id%>
                         <%=submit_tag "Back Project"%>
                     <% end %>
                 </div>
+                <% end %>
             <% end %>
         <%else%>
-            <div id="edit-project-button">
-                <%= link_to "Edit Project", edit_project_path(@project)%>
-            </div>
+            <p>login or create an account to back this project</p>
         <% end %>
 
 
@@ -69,7 +73,7 @@
             <% end %>
         </div>
         
-    
+    <%if logged_in?(session)%>
         <div id="project-comments-form">
             <%=form_for @comment do |f|%>
                 <%=f.text_area :content%><br>
@@ -78,6 +82,7 @@
                 <%=f.submit%>
             <% end %>
         <div>
+    <% end %>
 
     </div>
     </center>

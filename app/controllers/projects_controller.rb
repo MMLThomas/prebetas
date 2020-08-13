@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
+    before_action :set_project!, only: [:show, :edit, :update]
+    before_action :require_login, only: [:new, :edit]
 
     def index
         params[:search] ? @projects = Project.search(params) : @projects = Project.all
     end
 
     def show
-        @project = Project.find(params[:id])
         @comment = Comment.new
     end
 
@@ -14,17 +15,28 @@ class ProjectsController < ApplicationController
     end
 
     def create
-        current_user(session).projects.create(project_params)
-        redirect_to projects_path
+        @project = current_user(session).projects.new(project_params)
+        if @project.valid?
+        @project.save
+        redirect_to project_path(@project)
+        else
+        render :new
+        end
     end
 
     def edit
-        @project = Project.find(params[:id])
+        if @project.user != current_user(session)
+            redirect_to user_path(current_user(session))
+        end
     end
 
     def update
-        @project = Project.find(params[:id])
         @project.update(project_params)
+        if @project.valid?
+          redirect_to project_path(@project)
+        else
+          render :edit
+        end
     end
 
     def destroy
@@ -32,8 +44,17 @@ class ProjectsController < ApplicationController
     end
 
     private
+
     def project_params
         params.require(:project).permit(:title, :short_description, :story, :image, :start_date, :duration, :incentive, :goal)
+    end
+
+    def set_project!
+        @project = Project.find(params[:id])
+    end
+
+    def require_login
+    redirect_to '/login' unless session.include? :user_id
     end
     
 end

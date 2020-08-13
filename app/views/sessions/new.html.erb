@@ -1,4 +1,6 @@
-<h1><center>This is the login page</center></h1>
+<h1><center>This is the login page</center></h1><br>
+
+
 
         <center>
         <div class="login-form">
@@ -10,6 +12,7 @@
                 
                 
                 <%=submit_tag "login"%>
-            <% end %>
+            <% end %><br>
+            <%= button_to "Log in with Google", '/auth/google_oauth2'  %>
         </div>
         </center>

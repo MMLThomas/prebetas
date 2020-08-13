@@ -1,6 +1,15 @@
 <center>
 <h1>Edit Account Details</h1><br><br>
 
+    <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="account-edit-form">
 

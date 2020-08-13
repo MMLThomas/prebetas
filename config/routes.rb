@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   post '/logout' => "sessions#destroy"
+  get '/auth/:provider/callback' => 'sessions#omniauth'
 
   scope "/users" do
     resources :projects, only: [:new]
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :enrollments, only: [:create, :destroy]
   resources :categories
-  resources :comments, only: [:create, :destroy]
+  resources :comments
   resources :projects
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

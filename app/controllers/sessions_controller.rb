@@ -16,10 +16,15 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            redirect_to root_path
+            redirect_to '/login'
         end 
+    end
 
-        
+    def omniauth
+        @user = User.from_omniauth(request.env['omniauth.auth'])
+        session[:user_id] = @user.id
+        redirect_to root_path
+    
     end
 
     #logs user out and redirects them to the site homepage 
@@ -30,6 +35,12 @@ class SessionsController < ApplicationController
         end
     end
 
+
+    private
+
+    def auth
+        request.env['omniauth.auth']
+    end
 
 
 

@@ -23,6 +23,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 #store upload files to database 
 #gem "paperclip", "~> 6.0.0"
+#3rd party login
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+#load variables into env file 
+gem 'dotenv-rails'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

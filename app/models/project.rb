@@ -5,6 +5,12 @@ class Project < ApplicationRecord
     has_many :enrollments, dependent: :delete_all
     has_many :backers, through: :enrollments, source: :user, dependent: :delete_all
     has_one_attached :image
+    validates :duration, presence: {message: 'can’t be left blank'}
+    validates :title, presence:  {message: 'can’t be left blank'}
+    validates :title, uniqueness: {message: 'already taken'} 
+    validates :story, presence: {message: 'can’t be left blank'}
+    validates :start_date, presence: {message: 'can’t be left blank'}
+    validates :incentive, presence: {message: 'can’t be left blank'}
 
 
 
