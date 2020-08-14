@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prebetas Rails application
 
-Things you may want to cover:
+Welcome to the Prebetas. Prebetas allows you to create campaings to collect users in order to prove the concept of your application or service before actually launching or bulding. It also allows users to discover new innovative ideas and to recieve incentives for jumping on and commiting to be a user of these project in there pre beta testing phase.
 
-* Ruby version
+Installation
 
-* System dependencies
+To download and use this web app
 
-* Configuration
+1 download or clone this project
 
-* Database creation
+2 cd into the prebetas directory
 
-* Database initialization
+3 run bundle install in your console
 
-* How to run the test suite
+4 launch your local host throughs rails
 
-* Services (job queues, cache servers, search engines, etc.)
+5 navigate to your local host in your web browser
 
-* Deployment instructions
-
-* ...
+standard mit license https://opensource.org/licenses/MIT

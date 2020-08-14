@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
     belongs_to :user
-    # belongs_to :category 
     has_many :comments, dependent: :delete_all
     has_many :enrollments, dependent: :delete_all
     has_many :backers, through: :enrollments, source: :user, dependent: :delete_all
