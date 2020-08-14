@@ -75,7 +75,7 @@
         <%if @comment || @comments%>
             <h1>Comments</h1>
             <div id="project-comments">
-                <% @project.show_comments.each do |comment|%>
+                <% @project.comments.each do |comment|%>
                     <p> @<%=comment.user.username%></p>
                     <%=comment.content%><br><br>
                 <% end %>

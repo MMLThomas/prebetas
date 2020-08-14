@@ -26,10 +26,7 @@ class Project < ApplicationRecord
         self.start_date.to_date + self.duration
     end
 
-    def backers
-        User.find(self.backer_ids)
-    end
-
+    
     def self.search(params)
         self.where("title LIKE ?", "%#{params[:search]}%")
     end
@@ -38,13 +35,5 @@ class Project < ApplicationRecord
         self.backers.find(user) ? true : false
     end
 
-
-    def show_comments
-        if !self.comments.empty?
-            self.comments
-        else 
-            []
-        end
-    end
 
 end
