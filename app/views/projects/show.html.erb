@@ -63,26 +63,35 @@
         <%=@project.story%>
     </div><br><br>
 
+    <div>
+        <%=link_to "View Comments", project_comments_path(@project)%>
+    </div>
+
+       <%# comments--nested routes in projects %>
+
     <center>
+   
     <div id="project-comments-container">
-        <h1>Comments</h1>
-        <div id="project-comments">
-            <% @project.show_comments.each do |comment|%>
-                <p> @<%=comment.user.username%></p>
-                <%=comment.content%><br><br>
-            <% end %>
-        </div>
+        <%if @comment || @comments%>
+            <h1>Comments</h1>
+            <div id="project-comments">
+                <% @project.show_comments.each do |comment|%>
+                    <p> @<%=comment.user.username%></p>
+                    <%=comment.content%><br><br>
+                <% end %>
+            </div>
+           <center> <%=link_to "Add Comment", new_project_comment_path(@project)%> </center>
+        <% end %>
         
-    <%if logged_in?(session)%>
-        <div id="project-comments-form">
-            <%=form_for @comment do |f|%>
-                <%=f.text_area :content%><br>
-                <%=hidden_field_tag :project_id, @project.id%>
-                <%=hidden_field_tag :user_id, current_user(session).id%>
-                <%=f.submit%>
-            <% end %>
-        <div>
-    <% end %>
+        <%if logged_in?(session) && @comment%>
+            <div id="project-comments-form">
+                <%=form_for [@project, @comment] do |f|%>
+                    <%=f.text_area :content%><br>
+                    <%=hidden_field_tag :project_id, @project.id%>
+                    <%=f.submit%>
+                <% end %>
+            <div>
+        <% end %>
 
     </div>
     </center>

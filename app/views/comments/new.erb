@@ -1,0 +1,24 @@
+<center>
+   
+    <div id="project-comments-container">
+            <h1>Comments</h1>
+            <div id="project-comments">
+                <% @project.show_comments.each do |comment|%>
+                    <p> @<%=comment.user.username%></p>
+                    <%=comment.content%><br><br>
+                <% end %>
+            </div>
+        
+        <%if logged_in?(session) && @new_comment%>
+            <div id="project-comments-form">
+                <%=form_for comments_path do |f|%>
+                    <%=f.text_area :content%><br>
+                    <%=hidden_field_tag :project_id, @project.id%>
+                    <%=f.submit%>
+                <% end %>
+            <div>
+        <% end %>
+    <% end %>
+
+    </div>
+    </center>

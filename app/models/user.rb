@@ -13,7 +13,6 @@ class User < ApplicationRecord
     validates :username, :uniqueness => {message: 'already taken'}
     validates :email, :presence => {message: 'cant be left blank'}
     validates :email, :uniqueness => { message: 'account with this email already exist'}
-    validates :password, :presence => { message: 'cant be left blank'}
     
     
 
