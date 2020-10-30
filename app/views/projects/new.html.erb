@@ -1,6 +1,16 @@
 <center>
 <h1>Create A New Project Here<h1>
 
+    <% if @project.errors.any? %>
+        <div id="error_explanation">
+            <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
     
     <div class="create-project-form">
 

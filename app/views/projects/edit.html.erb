@@ -2,6 +2,16 @@
 <h1>Edit <%=@project.title%><h1>
 </center>
 
+    <% if @project.errors.any? %>
+        <div id="error_explanation">
+            <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+            </ul>
+            </div>
+    <% end %>
+
     <div class="edit-project-form">
 
 
